@@ -12,8 +12,7 @@ from time import *
 import fbmdown
 
 """
-Shreyas Hirday Copyright 2014
-All Rights Reserved
+Author: Shreyas Hirday
 Contact Info - Email: shreyashirday@gmail.com or add me on Facebook!
 """
 
@@ -28,7 +27,7 @@ ROWSPPAGE = 50
 search = False
 
 
-
+#this decorator was copied and pasted lol
 def RateLimited(maxPerSecond):
     minInterval = 1.0 / float(maxPerSecond)
     def decorate(func):
