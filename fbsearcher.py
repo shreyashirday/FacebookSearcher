@@ -64,14 +64,11 @@ def returnData(tid,offset):
 
 print "Welcome!\n"
 
-
-token = raw_input("Enter your access token:")
-zero = False
-while not zero:
+while True:
+    token = raw_input("Enter your access token:")
     if len(token) > 0:
-        zero = True
-    else:
-        token = raw_input("Enter your access token:")
+        break
+
 fb = fbmdown.FBMDown(token)
 for i, thread in enumerate(fb.list_threads(),1):
     print u'- Thread ID: {0} for conversation with {1}'.format(thread.msg_id, thread.sender)
