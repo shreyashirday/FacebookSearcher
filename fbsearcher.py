@@ -91,13 +91,12 @@ if search == True:
     inputs = tid.split()
     tidinput = inputs[0]
     queryinput = inputs[1]
-    #data = returnData(tidinput)
-    #data = data['comments']['data']
+
 
 
 
     while True:
-    #while 'paging' in data:
+    
 
         data = returnData(tidinput,index)
         if 'comments' in data:
@@ -118,15 +117,15 @@ if search == True:
             if comment['from']['id'] is not fb.graph._user_id:
                 if 'message' in comment:
                     text = comment['message']
-                                #text = text[1:-1]
-                #print text
+
+
                     if queryinput == 'email':
-                    #print text + " ... checking for email"
+
                         match = re.search(emails,text)
                         if match:
                             print match.group()
                     elif queryinput == 'url':
-                        #print text + "...checking URL"
+
                         match = re.search(regexurl,text)
                         if match:
                             print match.group()
