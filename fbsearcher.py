@@ -48,7 +48,7 @@ def returnData(tid,offset):
         comments = 'comments.limit(30).offset({0})'.format(offset)
         params = urllib.urlencode({'fields': comments, 'access_token': token})
         url = 'https://graph.facebook.com/v2.2/'+tid+'?' + params
-        #print "FACEBOOK GRAPH REQUEST URL: " + url
+        
         data = urllib.urlopen(url).read()
         data = json.loads(data)
         return data
@@ -72,7 +72,7 @@ while True:
 fb = fbmdown.FBMDown(token)
 for i, thread in enumerate(fb.list_threads(),1):
     print u'- Thread ID: {0} for conversation with {1}'.format(thread.msg_id, thread.sender)
-        #print u' -Conversation with {0}'.format(thread.sender)
+
     if i % ROWSPPAGE == 0:
         key = raw_input(' Press Enter for next, press q to quit, press n to search a conversation\n')
         if key == 'q':
@@ -93,7 +93,7 @@ if search == True:
 
 
     while True:
-    
+
 
         data = returnData(tidinput,index)
         if 'comments' in data:
