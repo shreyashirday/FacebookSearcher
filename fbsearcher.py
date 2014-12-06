@@ -43,9 +43,9 @@ def RateLimited(maxPerSecond):
         return rateLimitedFunction
     return decorate
 
-@RateLimited(100)
+@RateLimited(300)
 def returnData(tid,offset):
-        comments = 'comments.limit(30).offset({0})'.format(offset)
+        comments = 'comments.limit(50).offset({0})'.format(offset)
         params = urllib.urlencode({'fields': comments, 'access_token': token})
         url = 'https://graph.facebook.com/v2.2/'+tid+'?' + params
         
@@ -80,7 +80,7 @@ for i, thread in enumerate(fb.list_threads(),1):
         elif key == 'n':
             search = True
             break
-index = 0
+index = 1
 if search == True:
 
 
@@ -134,5 +134,5 @@ if search == True:
 
         index += 50
 
-        sleep(2)
+
     print "Goodbye!"
