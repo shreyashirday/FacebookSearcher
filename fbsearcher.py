@@ -48,7 +48,7 @@ def returnData(tid,offset):
         comments = 'comments.limit(50).offset({0})'.format(offset)
         params = urllib.urlencode({'fields': comments, 'access_token': token})
         url = 'https://graph.facebook.com/v2.2/'+tid+'?' + params
-        
+
         data = urllib.urlopen(url).read()
         data = json.loads(data)
         return data
@@ -84,7 +84,7 @@ index = 1
 if search == True:
 
 
-    tid = raw_input('Copy and paste the thread id and pick query(email,url, or phone)\n')
+    tid = raw_input('Copy and paste the thread id and pick query(email,url, or phone) separated by a space\n')
     inputs = tid.split()
     tidinput = inputs[0]
     queryinput = inputs[1]
@@ -111,10 +111,10 @@ if search == True:
         for comment in data:
 
 
-            if comment['from']['id'] is not fb.graph._user_id:
+            if comment['from']['id'] != fb.graph._user_id:
                 if 'message' in comment:
                     text = comment['message']
-
+                    print text
 
                     if queryinput == 'email':
 
