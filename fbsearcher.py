@@ -25,7 +25,7 @@ phone = '(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-
 ROWSPPAGE = 50
 
 search = False
-
+choice = 0
 
 #this decorator was copied and pasted lol
 def RateLimited(maxPerSecond):
@@ -88,9 +88,11 @@ if search == True:
     inputs = tid.split()
     tidinput = inputs[0]
     queryinput = inputs[1]
-
-
-
+    userchoice = int(input("Enter 1 to search through the other person's messages, Enter 2 to search your messages, Enter 3 to search through both of your messages\n"))
+    if userchoice == 1 or userchoice == 2 or userchoice == 3:
+        choice = userchoice
+    else:
+        choice = 1
 
     while True:
 
@@ -111,10 +113,10 @@ if search == True:
         for comment in data:
 
 
-            if comment['from']['id'] != fb.graph._user_id:
+            if choice == 1 and comment['from']['id'] != fb.graph._user_id or choice == 2 and comment['from']['id'] == fb.graph._user_id or choice == 3:
                 if 'message' in comment:
                     text = comment['message']
-                    print text
+
 
                     if queryinput == 'email':
 
