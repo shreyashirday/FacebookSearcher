@@ -86,13 +86,15 @@ if search == True:
 
     tid = raw_input('Copy and paste the thread id and pick query(email,url, or phone) separated by a space\n')
     inputs = tid.split()
+    if len(inputs) < 2:
+        break
     tidinput = inputs[0]
     queryinput = inputs[1]
     userchoice = int(input("Enter 1 to search through the other person's messages, Enter 2 to search your messages, Enter 3 to search through both of your messages\n"))
     if userchoice == 1 or userchoice == 2 or userchoice == 3:
         choice = userchoice
     else:
-        choice = 1
+        choice = 3
 
     while True:
 
