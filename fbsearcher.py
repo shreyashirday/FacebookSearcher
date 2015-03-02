@@ -64,12 +64,14 @@ def returnData(tid,offset):
 
 print "Welcome!\n"
 
+#ask user for access token
 while True:
     token = raw_input("Enter your access token:")
     if len(token) > 0:
         break
 
 fb = fbmdown.FBMDown(token)
+#print all of users existing fbook conversations
 for i, thread in enumerate(fb.list_threads(),1):
     print u'- Thread ID: {0} for conversation with {1}'.format(thread.msg_id, thread.sender)
 
@@ -83,7 +85,7 @@ for i, thread in enumerate(fb.list_threads(),1):
 index = 1
 if search == True:
 
-
+    #ask user for conversation id and query
     tid = raw_input('Copy and paste the thread id and pick query(email,url, or phone) separated by a space\n')
     inputs = tid.split()
     if len(inputs) < 2:
@@ -98,7 +100,7 @@ if search == True:
 
     while True:
 
-
+        #iterate through all messages
         data = returnData(tidinput,index)
         if 'comments' in data:
             if 'data' in data['comments']:
@@ -114,12 +116,12 @@ if search == True:
 
         for comment in data:
 
-
+    
             if choice == 1 and comment['from']['id'] != fb.graph._user_id or choice == 2 and comment['from']['id'] == fb.graph._user_id or choice == 3:
                 if 'message' in comment:
                     text = comment['message']
-
-
+                    
+                    #compare message against regex query to see if its a match and if it is, print it
                     if queryinput == 'email':
 
                         match = re.search(emails,text)
